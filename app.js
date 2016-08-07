@@ -1,40 +1,4 @@
 
-var tasks = {
-    1: {
-        id: 1,
-        type: 'verify',
-        status: 'queued',
-        created: 123456789,
-        ref: {
-            type: 'site',
-            title: 'aegir.local.site',
-            url: '/hosting/c/aegir.local.site'
-        }
-    },
-    2: {
-        id: 2,
-        type: 'install',
-        status: 'processing',
-        created: 123456789,
-        ref: {
-            type: 'site',
-            title: 'aegir.local.site',
-            url: '/hosting/c/aegir.local.site'
-        }
-    },
-    3: {
-        id: 3,
-        type: 'backup',
-        status: 'success',
-        created: 123456789,
-        ref: {
-            type: 'site',
-            title: 'aegir.local.site',
-            url: '/hosting/c/aegir.local.site'
-        }
-    }
-};
-
 var statusTypes = {
     'queued': {
         text: 'Queued',
@@ -67,14 +31,26 @@ var statusTypes = {
         class: 'warning'
     },
 };
-
+var tasksApiUrl = 'api/tasks.json';
 var App = new Vue({
     el: '#app',
     data: {
-        tasks: tasks,
+        tasks: null,
         statusTypes: statusTypes
     },
+    created: function () {
+        this.fetchData();
+    },
     methods: {
+        fetchData: function () {
+            var xhr = new XMLHttpRequest()
+            var self = this
+            xhr.open('GET', tasksApiUrl)
+            xhr.onload = function () {
+                self.tasks = JSON.parse(xhr.responseText)
+            }
+            xhr.send()
+        },
         addTodo: function () {
             var text = this.newTodo.trim()
             if (text) {

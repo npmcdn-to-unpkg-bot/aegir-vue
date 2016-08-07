@@ -1,0 +1,35 @@
+{
+  "1": {
+    "id": 1,
+    "type": "verify",
+    "status": "queued",
+    "created": 123456789,
+    "ref": {
+      "type": "site",
+      "title": "aegir.local.site",
+      "url": "/hosting/c/aegir.local.site"
+    }
+  },
+  "2": {
+    "id": 2,
+    "type": "install",
+    "status": "processing",
+    "created": 123456789,
+    "ref": {
+      "type": "site",
+      "title": "aegir.local.site",
+      "url": "/hosting/c/aegir.local.site"
+    }
+  },
+  "3": {
+    "id": 3,
+    "type": "backup",
+    "status": "success",
+    "created": 123456789,
+    "ref": {
+      "type": "site",
+      "title": "aegir.local.site",
+      "url": "/hosting/c/aegir.local.site"
+    }
+  }
+}
