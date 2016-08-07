@@ -39,9 +39,15 @@ var App = new Vue({
         statusTypes: statusTypes
     },
     created: function () {
-        this.fetchData();
+        this.fetchQueue();
+
     },
     methods: {
+        fetchQueue: function () {
+            console.log('fetch queue...');
+            this.fetchData();
+            setTimeout(this.fetchQueue, 1000);
+        },
         fetchData: function () {
             var xhr = new XMLHttpRequest()
             var self = this
@@ -74,6 +80,6 @@ var App = new Vue({
 // $watch is an instance method
 App.$watch('tasks', function (tasks, oldTasks) {
 
-    console.log(oldTasks, 'oldTasks!');
-    console.log(tasks, 'newTasks!');
+    // console.log(oldTasks, 'oldTasks!');
+    // console.log(tasks, 'newTasks!');
 })
