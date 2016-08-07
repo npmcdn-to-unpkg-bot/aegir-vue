@@ -18,20 +18,8 @@
 
 <div id="app">
     <table class='table table-hover'>
-        <tr v-for="task in tasks" v-bind:class="{
-          'queued': task.status == 'queued',
-          'info': task.status == 'processing',
-          'success': task.status == 'success',
-          'danger': task.status == 'error',
-          'warning': task.status == 'warning'
-        }"><td>
-            <i class="fa"  v-bind:class="{
-          'fa-clock-o': task.status == 'queued',
-          'fa-cog fa-spin': task.status == 'processing',
-          'fa-check': task.status == 'success',
-          'fa-exclamation-circle': task.status == 'error',
-          'fa-warning': task.status == 'warning'
-        }"></i> {{ task.type }}: <a href="{{ task.ref.url }}">{{ task.ref.title }}</a>
+        <tr v-for="task in tasks" v-bind:class="getStatusClass(task.status)"><td>
+            <i class="fa"  v-bind:class="getStatusIcon(task.status)"></i> {{ task.type }}: <a href="{{ task.ref.url }}">{{ task.ref.title }}</a>
             <select v-model="task.status">
                 <option  v-for="status in statusTypes" value="{{ status.type }}">{{ status.text }}</option>
             </select>

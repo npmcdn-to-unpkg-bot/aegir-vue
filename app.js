@@ -36,31 +36,31 @@ var tasks = {
 };
 
 var statusTypes = {
-    queued: {
+    'queued': {
         text: 'Queued',
         type: 'queued',
         icon: 'clock-o',
         class: 'queued'
     },
-    processing: {
+    'processing': {
         text: 'Processing',
         type: 'processing',
         icon: 'cog fa-spin',
         class: 'processing'
     },
-    success: {
+    'success': {
         text: 'Success',
         type: 'success',
         icon: 'check',
         class: 'success'
     },
-    error: {
+    'error': {
         text: 'Error',
         type: 'error',
         icon: 'exclamation-circle',
         class: 'danger'
     },
-    warning: {
+    'warning': {
         text: 'Warning',
         type: 'warning',
         icon: 'warning',
@@ -85,6 +85,12 @@ var App = new Vue({
         removeTodo: function (index) {
             this.todos.splice(index, 1)
         },
+        getStatusClass: function(status) {
+            return this.statusTypes[status].class;
+        },
+        getStatusIcon: function(status) {
+            return 'fa-' + this.statusTypes[status].icon;
+        }
     }
 })
 
