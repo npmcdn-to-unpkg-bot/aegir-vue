@@ -1,0 +1,46 @@
+
+<html>
+<header>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <script src="https://use.fontawesome.com/d7d756a782.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     -->
+</header>
+<body>
+
+<div id="app">
+    <table class='table table-hover'>
+        <tr v-for="task in tasks" v-bind:class="{
+          'queued': task.status == 'queued',
+          'info': task.status == 'processing',
+          'success': task.status == 'success',
+          'danger': task.status == 'error',
+          'warning': task.status == 'warning'
+        }"><td>
+            <i class="fa"  v-bind:class="{
+          'fa-clock-o': task.status == 'queued',
+          'fa-cog fa-spin': task.status == 'processing',
+          'fa-check': task.status == 'success',
+          'fa-exclamation-circle': task.status == 'error',
+          'fa-warning': task.status == 'warning'
+        }"></i> {{ task.type }}: <a href="{{ task.ref.url }}">{{ task.ref.title }}</a>
+            <select v-model="task.status">
+                <option  v-for="status in statusTypes" value="{{ status.type }}">{{ status.text }}</option>
+            </select>
+        </td></tr>
+        <tr><td>
+
+        </td></tr>
+    </table>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
